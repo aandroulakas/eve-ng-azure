@@ -1,1 +1,1 @@
-Include your SSH Key in this directory "id_rsa.pub"
+Include your Publick SSH Key(id_rsa.pub) in this directory.
