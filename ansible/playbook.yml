@@ -4,31 +4,38 @@
   tasks:
     - name: Wait for VM to be Available
       wait_for_connection:
+
     - name: Gather Facts
       setup:
+
     - name: Update all Packages
       apt:
         name: "*"
         state: latest
         update_cache: yes
         force_apt_get: yes
+
     - name: Create Partition of Data Disk
       parted:
         device: /dev/sdc
         number: 1
         state: present
+
     - name: Format Data Disk to ext4
       filesystem:
         dev: /dev/sdc1
         fstype: ext4
+
     - name: Get Data Disk UUID
       command: blkid -s UUID -o value /dev/sdc1
       register: disk_uuid
       changed_when: false
+
     - name: Create Mount path
       file:
         path: /opt/unetlab/addons/qemu/
         state: directory
+
     - name: Create Mount Entry
       mount:
         path: /opt/unetlab/addons/qemu/
@@ -36,13 +43,16 @@
         fstype: ext4
         opts: noatime
         state: present
+
     - name: Add EVE-NG Apt Key
       apt_key:
         url: http://www.eve-ng.net/repo/eczema@ecze.com.gpg.key
         state: present
+
     - name: Add EVE-NG Repository
       apt_repository:
         repo: deb [arch=amd64]  http://www.eve-ng.net/repo xenial main
+
     - name: Install Packages
       apt:
         name: "{{ item }}"
@@ -54,15 +64,18 @@
         - eve-ng
         - python-openssl
       register: eve_pkg
+
     - name: Restart MySQL
       service:
         name: mysql
         state: restarted
       when: eve_pkg.changed
+
     - name: Move /etc/rc.local to /etc/eve-setup.sh
       command: mv /etc/rc.local /etc/eve-setup.sh
       args:
         creates: /etc/eve-setup.sh
+
     - name: Update GRUB Config
       lineinfile:
         path: /etc/default/grub
@@ -74,9 +87,11 @@
         - regexp: 'GRUB_CMDLINE_LINUX=.*'
           line: 'GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0 console=ttyS1,115200"'
       register: grub_config
+
     - name: Update GRUB
       command: update-grub
       when: grub_config.changed
+
     - name: Finish Configuration
       file:
         path: /opt/ovf/.configured
@@ -84,11 +99,13 @@
         modification_time: preserve
         access_time: preserve
       register: configured
+
     - name: Enable Apache2 SSL Module
       apache2_module:
         name: ssl
         state: present
       tags: tls
+
     - name: Ensure SSL Directories Exist
       file:
         path: "{{ item }}"
@@ -97,16 +114,19 @@
         - /etc/ssl/private
         - /etc/ssl/certs
       tags: tls
+
     - name: Generate an OpenSSL Private Key
       openssl_privatekey:
         path: /etc/ssl/private/apache-selfsigned.pem
       tags: tls
+
     - name: Generate an OpenSSL CSR
       openssl_csr:
         path: /etc/ssl/private/apache-selfsigned.csr
         privatekey_path: /etc/ssl/private/apache-selfsigned.pem
         common_name: "{{ inventory_hostname }}"
       tags: tls
+
     - name: Generate a Self-Signed Certificate
       openssl_certificate:
         path: /etc/ssl/certs/apache-selfsigned.crt
@@ -114,26 +134,31 @@
         csr_path: /etc/ssl/private/apache-selfsigned.csr
         provider: selfsigned
       tags: tls
+
     - name: Create Apache SSL Virtual Server
       template:
         src: etc/apache2/sites-enabled/default-ssl.conf
         dest: /etc/apache2/sites-enabled/default-ssl.conf
       register: ssl_vs
       tags: tls
+
     - name: Restart Apache
       service:
         name: apache2
         state: restarted
       when: ssl_vs.changed
       tags: tls
+
     - name: Reboot
       reboot:
       when: configured.changed
+
     - name: Copy Images
       synchronize:
         src: "{{ images_path | default('images/') }}"
         dest: /opt/unetlab/addons/qemu/
       register: images
+
     - name: Update Permissions
       command: /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
       when: images.changed
