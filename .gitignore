@@ -31,3 +31,6 @@ override.tf.json
 # SSH keys, just in case
 id_rsa
 id_rsa.pub
+
+# Secret variables
+**/secrets.tfvars
