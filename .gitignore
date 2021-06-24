@@ -1,6 +1,9 @@
 # Local .terraform directories
 **/.terraform/*
+.terraform.lock.hcl
 
+include all files , exlude the secrets and SSH public key
+6 minutes ago
 # .tfstate files
 *.tfstate
 *.tfstate.*
