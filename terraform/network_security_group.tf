@@ -43,7 +43,7 @@ resource "azurerm_network_security_rule" "inbound_ipv6" {
   direction                   = "Inbound"
 }
 
-resource "azurerm_network_security_rule" "inbound_all" {
+resource "azurerm_network_security_rule" "inbound_deny_all" {
   name                        = "DenyAllInBound_Override" # default rule 65500
   resource_group_name         = azurerm_resource_group.main.name
   network_security_group_name = azurerm_network_security_group.main.name
