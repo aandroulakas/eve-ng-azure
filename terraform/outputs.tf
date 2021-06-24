@@ -14,6 +14,6 @@ output "virtual_network_name" {
 }
 
 output "fqdn" {
-    value       = "${azurerm_public_ip.main.fqdn}"
-    description = "The Name of the virtual network."
+  value       = azurerm_public_ip.main.fqdn
+  description = "The Name of the virtual network."
 }
