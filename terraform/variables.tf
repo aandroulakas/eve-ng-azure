@@ -39,7 +39,7 @@ variable "tags" {
 
 variable "vm_size" {
   type        = string
-  default     = "Standard_D4s_v4" # 4 vCPUs and 16GB RAM
+  default     = "Standard_D4s_v4" # 4vCPUs, 16GB RAM
   description = "Specifies the size of the Virtual Machine."
 }
 

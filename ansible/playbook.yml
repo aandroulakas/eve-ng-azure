@@ -18,17 +18,17 @@
 
     - name: Create Partition of Data Disk
       parted:
-        device: /dev/sdc
+        device: /dev/sdb
         number: 1
         state: present
 
     - name: Format Data Disk to ext4
       filesystem:
-        dev: /dev/sdc1
+        dev: /dev/sdb1
         fstype: ext4
 
     - name: Get Data Disk UUID
-      command: blkid -s UUID -o value /dev/sdc1
+      command: blkid -s UUID -o value /dev/sdb1
       register: disk_uuid
       changed_when: false
 
@@ -100,63 +100,63 @@
         modification_time: preserve
         access_time: preserve
       register: configured
-
-    - name: Enable Apache2 SSL Module
-      apache2_module:
-        name: ssl
-        state: present
-      tags: tls
-
-    - name: Ensure SSL Directories Exist
-      file:
-        path: "{{ item }}"
-        state: directory
-      loop:
-        - /etc/ssl/private
-        - /etc/ssl/certs
-      tags: tls
-
-    - name: Generate an OpenSSL Private Key
-      openssl_privatekey:
-        path: /etc/ssl/private/apache-selfsigned.pem
-      tags: tls
-
-    - name: Generate an OpenSSL CSR
-      openssl_csr:
-        path: /etc/ssl/private/apache-selfsigned.csr
-        privatekey_path: /etc/ssl/private/apache-selfsigned.pem
-        common_name: "{{ inventory_hostname }}"
-      tags: tls
-
-    - name: Generate a Self-Signed Certificate
-      openssl_certificate:
-        path: /etc/ssl/certs/apache-selfsigned.crt
-        privatekey_path: /etc/ssl/private/apache-selfsigned.pem
-        csr_path: /etc/ssl/private/apache-selfsigned.csr
-        provider: selfsigned
-      tags: tls
-
-    - name: Create Apache SSL Virtual Server
-      template:
-        src: etc/apache2/sites-enabled/default-ssl.conf
-        dest: /etc/apache2/sites-enabled/default-ssl.conf
-      register: ssl_vs
-      tags: tls
-
-    - name: Restart Apache
-      service:
-        name: apache2
-        state: restarted
-      when: ssl_vs.changed
-      tags: tls
-
-    - name: Reboot
-      reboot:
-      when: configured.changed
+#
+#    - name: Enable Apache2 SSL Module
+#      apache2_module:
+#        name: ssl
+#        state: present
+#      tags: tls
+#
+#    - name: Ensure SSL Directories Exist
+#      file:
+#        path: "{{ item }}"
+#        state: directory
+#      loop:
+#        - /etc/ssl/private
+#        - /etc/ssl/certs
+#      tags: tls
+#
+#    - name: Generate an OpenSSL Private Key
+#      openssl_privatekey:
+#        path: /etc/ssl/private/apache-selfsigned.pem
+#      tags: tls
+#
+#    - name: Generate an OpenSSL CSR
+#      openssl_csr:
+#        path: /etc/ssl/private/apache-selfsigned.csr
+#        privatekey_path: /etc/ssl/private/apache-selfsigned.pem
+#        common_name: "{{ inventory_hostname }}"
+#      tags: tls
+#
+#    - name: Generate a Self-Signed Certificate
+#      openssl_certificate:
+#        path: /etc/ssl/certs/apache-selfsigned.crt
+#        privatekey_path: /etc/ssl/private/apache-selfsigned.pem
+#        csr_path: /etc/ssl/private/apache-selfsigned.csr
+#        provider: selfsigned
+#      tags: tls
+#
+#    - name: Create Apache SSL Virtual Server
+#      template:
+#        src: etc/apache2/sites-enabled/default-ssl.conf
+#        dest: /etc/apache2/sites-enabled/default-ssl.conf
+#      register: ssl_vs
+#      tags: tls
+#
+#    - name: Restart Apache
+#      service:
+#        name: apache2
+#        state: restarted
+#      when: ssl_vs.changed
+#      tags: tls
+#
+#    - name: Reboot
+#      reboot:
+#      when: configured.changed
 
     - name: Copy Images
       synchronize:
-        src: "{{ images_path | default('images/') }}"
+        src: "{{ images_path | default('./images') }}"
         dest: /opt/unetlab/addons/qemu/
       register: images
 
