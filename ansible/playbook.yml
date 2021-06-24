@@ -1,6 +1,7 @@
 - hosts: all
   become: yes
   gather_facts: no
+
   tasks:
     - name: Wait for VM to be Available
       wait_for_connection:
