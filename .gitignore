@@ -2,8 +2,6 @@
 **/.terraform/*
 .terraform.lock.hcl
 
-include all files , exlude the secrets and SSH public key
-6 minutes ago
 # .tfstate files
 *.tfstate
 *.tfstate.*
@@ -31,9 +29,12 @@ override.tf.json
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
 
-# SSH keys, just in case
+# Exclude SSH keys
 id_rsa
 id_rsa.pub
 
-# Secret variables
+# Exlude Secret variables
 **/secrets.tfvars
+
+# Exlude QEMU images
+*.qcow2
