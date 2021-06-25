@@ -38,3 +38,6 @@ id_rsa.pub
 
 # Exlude QEMU images
 *.qcow2
+
+# More file to exlude
+.DS_Store
