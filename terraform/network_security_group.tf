@@ -43,6 +43,35 @@ resource "azurerm_network_security_rule" "inbound_ipv6" {
   direction                   = "Inbound"
 }
 
+resource "azurerm_network_security_rule" "inbound_ipv4_telnet" {
+  name                        = "AllowTelnetInBoundIPv4"
+  resource_group_name         = azurerm_resource_group.main.name
+  network_security_group_name = azurerm_network_security_group.main.name
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  source_address_prefixes     = [data.http.pip_ipv4.body]
+  destination_port_range      = "32769 - 32788"
+  destination_address_prefix  = "*"
+  access                      = "Allow"
+  priority                    = 102
+  direction                   = "Inbound"
+}
+
+# If your ISP does NOT provide you with an IPv6 , comment the lines 61-73
+resource "azurerm_network_security_rule" "inbound_ipv6_telnet" {
+  name                        = "AllowTelnetInBoundIPv6"
+  resource_group_name         = azurerm_resource_group.main.name
+  network_security_group_name = azurerm_network_security_group.main.name
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  source_address_prefixes     = [data.http.pip_ipv6.body]
+  destination_port_range      = "32769 - 32788"
+  destination_address_prefix  = "*"
+  access                      = "Allow"
+  priority                    = 103
+  direction                   = "Inbound"
+}
+
 resource "azurerm_network_security_rule" "inbound_deny_all" {
   name                        = "DenyAllInBound_Override" # default rule 65500
   resource_group_name         = azurerm_resource_group.main.name
