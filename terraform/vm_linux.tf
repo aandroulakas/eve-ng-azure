@@ -71,6 +71,6 @@ resource "azurerm_managed_disk" "main" {
 resource "azurerm_virtual_machine_data_disk_attachment" "main" {
   managed_disk_id    = azurerm_managed_disk.main.id
   virtual_machine_id = azurerm_linux_virtual_machine.main.id
-  lun                = "10"
+  lun                = "0"
   caching            = "ReadWrite"
 }
