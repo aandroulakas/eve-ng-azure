@@ -57,11 +57,9 @@ resource "azurerm_linux_virtual_machine" "main" {
     version   = "latest"
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo wget -O - https://www.eve-ng.net/repo/install-eve.sh | bash -i",
-    ]
-  }
+  #provisioner "local-exec" {
+  #  command = "ansible-playbook -u ${var.admin_username} -i '${azurerm_public_ip.main.fqdn}' --private-key ${file("files/id_rsa")} playpook.yml"
+  #}
 }
 
 resource "azurerm_managed_disk" "main" {

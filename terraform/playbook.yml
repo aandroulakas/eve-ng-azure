@@ -3,11 +3,8 @@
   gather_facts: yes
 
   tasks:
-    - name:  Wait for VM to become reachable over SSH
+    - name: Wait for VM to be Available
       wait_for_connection:
-        delay: 60
-        timeout: 600
-
 
     - name: Update all Packages
       apt:
@@ -65,14 +62,6 @@
         - eve-ng
         - python-openssl
       register: eve_pkg
-
-    -  name: Install a list of packages
-       apt:
-         pkg:
-         - software-properties-common
-         - eve-ng
-         - python-openssl
-       register: eve_pkg
 
     - name: Restart MySQL
       service:
