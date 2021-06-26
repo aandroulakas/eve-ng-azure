@@ -56,6 +56,12 @@ resource "azurerm_linux_virtual_machine" "main" {
     sku       = "16.04-LTS"
     version   = "latest"
   }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo wget -O - https://www.eve-ng.net/repo/install-eve.sh | bash -i",
+    ]
+  }
 }
 
 resource "azurerm_managed_disk" "main" {
