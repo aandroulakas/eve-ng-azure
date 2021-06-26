@@ -30,17 +30,20 @@ resource "azurerm_network_interface_security_group_association" "main" {
 }
 
 resource "azurerm_linux_virtual_machine" "main" {
-  name                            = "vm-${var.suffix}"
-  resource_group_name             = azurerm_resource_group.main.name
-  location                        = azurerm_resource_group.main.location
-  size                            = var.vm_size
-  computer_name                   = "eve-ng"
-  admin_username                  = var.admin_username
-  admin_password                  = random_password.main.result
-  disable_password_authentication = false
-  network_interface_ids           = [azurerm_network_interface.main.id]
-  zone                            = "3"
-  tags                            = var.tags
+  name                  = "vm-${var.suffix}"
+  resource_group_name   = azurerm_resource_group.main.name
+  location              = azurerm_resource_group.main.location
+  size                  = var.vm_size
+  computer_name         = "eve-ng"
+  admin_username        = var.admin_username
+  network_interface_ids = [azurerm_network_interface.main.id]
+  zone                  = "3"
+  tags                  = var.tags
+
+  admin_ssh_key {
+    username   = var.admin_username
+    public_key = azurerm_ssh_public_key.main.public_key
+  }
 
   os_disk {
     caching              = "ReadWrite"
@@ -70,10 +73,4 @@ resource "azurerm_virtual_machine_data_disk_attachment" "main" {
   virtual_machine_id = azurerm_linux_virtual_machine.main.id
   lun                = "0"
   caching            = "ReadWrite"
-}
-
-resource "random_password" "main" {
-  length           = 16
-  special          = true
-  override_special = "!@"
 }
