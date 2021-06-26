@@ -5,9 +5,6 @@
   tasks:
     - name:  Wait for VM to become reachable over SSH
       wait_for_connection:
-        delay: 60
-        timeout: 600
-
 
     - name: Update all Packages
       apt:
@@ -66,13 +63,15 @@
         - python-openssl
       register: eve_pkg
 
-    -  name: Install a list of packages
-       apt:
-         pkg:
-         - software-properties-common
-         - eve-ng
-         - python-openssl
-       register: eve_pkg
+#    -  name: Install a list of packages
+#       apt:
+#         update_cache: yes
+#         force_apt_get: yes
+#         pkg:
+#         - software-properties-common
+#         - eve-ng
+#         - python-openssl
+#       register: eve_pkg
 
     - name: Restart MySQL
       service:

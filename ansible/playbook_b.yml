@@ -5,8 +5,6 @@
   tasks:
     - name:  Wait for VM to become reachable over SSH
       wait_for_connection:
-        delay: 60
-        timeout: 600
 
     - name: Update all Packages
       apt:
