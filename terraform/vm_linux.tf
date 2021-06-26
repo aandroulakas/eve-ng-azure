@@ -56,10 +56,6 @@ resource "azurerm_linux_virtual_machine" "main" {
     sku       = "16.04-LTS"
     version   = "latest"
   }
-
-  #provisioner "local-exec" {
-  #  command = "ansible-playbook -u ${var.admin_username} -i '${azurerm_public_ip.main.fqdn}' --private-key ${file("files/id_rsa")} playpook.yml"
-  #}
 }
 
 resource "azurerm_managed_disk" "main" {
