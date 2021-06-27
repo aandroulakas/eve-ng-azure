@@ -128,4 +128,7 @@ $ ansible-playbook -u eve-ng -i inventory playbook.yml
 > possible deployment.
 
 # Basic connectivity test with a simple topology.
-In the directory  `eve-ng-azure/lab` I have included a simple topology (Basic connectivity test.zip) which can be loaded to EVE-NG and the relevant configuration files.
+In the directory  `eve-ng-azure/lab` , I have included a simple topology (Basic connectivity test.zip) which can be loaded to EVE-NG with the relevant configuration files.
+
+> Iterm2 (I am using this as my favorite terminal in macOS) telnet html handler not working on macOS Catalin & Big Sur. Please see the following
+[article](https://gitlab.com/gnachman/iterm2/-/issues/9365) for resolution.

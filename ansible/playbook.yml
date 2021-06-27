@@ -3,7 +3,7 @@
   gather_facts: yes
 
   tasks:
-    - name:  Wait for VM to become reachable over SSH
+    - name:  Wait for Azure VM to become reachable over SSH
       wait_for_connection:
 
     - name: Update all Packages
@@ -50,18 +50,6 @@
     - name: Add EVE-NG Repository
       apt_repository:
         repo: deb [arch=amd64]  http://www.eve-ng.net/repo xenial main
-
-#    - name: Install Packages
-#      apt:
-#        name: "{{ item }}"
-#        state: latest
-#        update_cache: yes
-#        force_apt_get: yes
-#      loop:
-#        - software-properties-common
-#        - eve-ng
-#        - python-openssl
-#      register: eve_pkg
 
     -  name: Install a list of packages
        apt:
