@@ -18,7 +18,7 @@ Because one of the most frequently asked question from friend and colleagues is:
 
 ## Why Terraform?
 
-Because is the most popular IaC tool.
+Because is the most popular IaC tool for Cloud deployments.
 
 ## Why Ansible?
 
@@ -88,7 +88,7 @@ images
 ```
 The structure of the directory is very important because this will be used by Ansible to push the QEMU images from your local system to Azure VM (/opt/unetlab/addons/qemu/).
 
-5. And now the Magic! Navigate to `eve-ng-azure/terraform` and execute in order the following:
+5. And now the Magic! Navigate to `eve-ng-azure/terraform` and run the following in order:
 ```bash
 $ terraform init
 
@@ -96,12 +96,12 @@ $ terraform plan
 
 $ terraform apply
 ```
-6. Once Terraform deploy the infrustructire in Azure we just need to configure the VM with Ansible. To do so, navigate to `eve-ng-azure/ansible` and execute the following:
+6. Once Terraform deploy the infrastructure in Azure we just need to configure the VM with Ansible. To do so, navigate to `eve-ng-azure/ansible` and run the following:
 ```bash
 $ ansible-playbook -u eve-ng -i inventory playbook.yml
 ```
 
-# Usage after depleyment is finished:
+# Usage after deployment is finished:
 
 Navigate to http://{eveng_fqdn}.
 The default credentials of `admin/eve` can be used. The service is only available over HTTP and currently does not redirect or supports HTTPS.
@@ -116,7 +116,6 @@ You just need to add an additional image into the appropriate directory and re-r
 $ ansible-playbook -u eve-ng -i inventory playbook.yml
 ```
 
-
 # Caveats
 
 > My ISP recently introduced IPv6 to my broadband connection. Thus, I have included IPv6 NSG rules into the file `network_security_group.tf`. If this is not the case for your, please comment any code referencing IPv6 as instructed in the file.
@@ -127,3 +126,6 @@ $ ansible-playbook -u eve-ng -i inventory playbook.yml
 > and format it as `ext4`.  In my personal testing, this hasn't been an issue,
 > but be warned that this could break something of yours.  I can't test every
 > possible deployment.
+
+# Basic connectivity test with a simple topology.
+In the directory  `eve-ng-azure/lab` I have included a simple topology (Basic connectivity test.zip) which can be loaded to EVE-NG and the relevant configuration files.
