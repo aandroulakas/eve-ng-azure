@@ -51,27 +51,27 @@
       apt_repository:
         repo: deb [arch=amd64]  http://www.eve-ng.net/repo xenial main
 
-    - name: Install Packages
-      apt:
-        name: "{{ item }}"
-        state: latest
-        update_cache: yes
-        force_apt_get: yes
-      loop:
-        - software-properties-common
-        - eve-ng
-        - python-openssl
-      register: eve_pkg
+#    - name: Install Packages
+#      apt:
+#        name: "{{ item }}"
+#        state: latest
+#        update_cache: yes
+#        force_apt_get: yes
+#      loop:
+#        - software-properties-common
+#        - eve-ng
+#        - python-openssl
+#      register: eve_pkg
 
-#    -  name: Install a list of packages
-#       apt:
-#         update_cache: yes
-#         force_apt_get: yes
-#         pkg:
-#         - software-properties-common
-#         - eve-ng
-#         - python-openssl
-#       register: eve_pkg
+    -  name: Install a list of packages
+       apt:
+         update_cache: yes
+         force_apt_get: yes
+         pkg:
+         - software-properties-common
+         - eve-ng
+         - python-openssl
+       register: eve_pkg
 
     - name: Restart MySQL
       service:
