@@ -21,7 +21,7 @@ resource "azurerm_network_security_rule" "inbound_ipv4" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   source_address_prefixes     = [data.http.pip_ipv4.body]
-  destination_port_ranges     = [22, 80, 443]
+  destination_port_ranges     = [22, 80]
   destination_address_prefix  = "*"
   access                      = "Allow"
   priority                    = 100
@@ -36,7 +36,7 @@ resource "azurerm_network_security_rule" "inbound_ipv6" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   source_address_prefixes     = [data.http.pip_ipv6.body]
-  destination_port_ranges     = [22, 80, 443]
+  destination_port_ranges     = [22, 80]
   destination_address_prefix  = "*"
   access                      = "Allow"
   priority                    = 101

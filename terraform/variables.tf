@@ -46,7 +46,7 @@ variable "vm_size" {
 variable "disk_size_gb" {
   type        = number
   default     = 100
-  description = "Disk size in GB"
+  description = "Data disk size in GB"
 }
 
 variable "subscription_id" {
