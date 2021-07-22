@@ -113,22 +113,15 @@ The default credentials of `admin/eve` can be used. The service is only availabl
 You just need to add an additional image into the appropriate directory and re-run Ansible playbook. After placing the new image into the directory `eve-ng-azure/ansible/images`
 , navigate to `eve-ng-azure/ansible` and run the following:
 ```bash
+$ cd ~/eve-ng-azure/ansible
 $ ansible-playbook -u eve-ng -i inventory playbook.yml
 ```
 
 # Caveats
 
-> My ISP recently introduced IPv6 to my broadband connection. Thus, I have included IPv6 NSG rules into the file `network_security_group.tf`. If this is not the case for your, please comment any code referencing IPv6 as instructed in the file.
-
-
-
->will unconditionally create a partition on `/dev/sdc`
-> and format it as `ext4`.  In my personal testing, this hasn't been an issue,
-> but be warned that this could break something of yours.  I can't test every
-> possible deployment.
+> My ISP recently introduced IPv6 to my broadband connection. Thus, I have included IPv6 NSG rules into the file `network_security_group.tf`. If this is not the case for you, please comment any code referencing IPv6 as instructed in the file.
 
 # Basic connectivity test with a simple topology.
-In the directory  `eve-ng-azure/lab` , I have included a simple topology (Basic connectivity test.zip) which can be loaded to EVE-NG with the relevant configuration files.
+In the directory  `eve-ng-azure/lab` , I have included a simple topology (Basic connectivity test.zip) which can be loaded to EVE-NG with the relevant configuration files. The topology is based on Cisco QEMU images.
 
-> Iterm2 (I am using this as my favorite terminal in macOS) telnet html handler not working on macOS Catalin & Big Sur. Please see the following
-[article](https://gitlab.com/gnachman/iterm2/-/issues/9365) for resolution.
+> Iterm2 (I am using this as my favorite terminal in macOS) telnet html handler is not working on macOS Catalina & Big Sur. Please see the following [article](https://gitlab.com/gnachman/iterm2/-/issues/9365) for resolution.
