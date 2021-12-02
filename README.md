@@ -101,7 +101,7 @@ $ terraform apply
 $ ansible-playbook -u eve-ng -i inventory playbook.yml
 ```
 
-> Upload speed of the QEMU images , depends on your Internet connection upload speed.
+> Upload speed of QEMU images depends on your Internet connection.
 
 # Usage after deployment is finished:
 
