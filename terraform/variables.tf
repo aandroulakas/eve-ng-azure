@@ -1,6 +1,6 @@
 variable "admin_username" {
   type        = string
-  description = "The admin user for the VM"
+  description = "The admin user for the Azure VM"
 }
 
 variable "resource_group_name" {
@@ -18,12 +18,12 @@ variable "suffix" {
 variable "eveng_fqdn" {
   type        = string
   default     = ""
-  description = "What is the FQDN you would like the EVE-NG server to resolve to?"
+  description = "The FQDN you would like the EVE-NG server to resolve to"
 }
 
 variable "address_space" {
   type        = string
-  description = "The address space that is used the virtual network."
+  description = "The address space of the virtual network."
 }
 
 variable "location" {
@@ -46,17 +46,17 @@ variable "vm_size" {
 variable "disk_size_gb" {
   type        = number
   default     = 100
-  description = "Data disk size in GB"
+  description = "Specifies the size of the Data disk in GB"
 }
 
 variable "subscription_id" {
   type        = string
   default     = ""
-  description = "The Azure Subscription ID where you want to deloy resources"
+  description = "The Azure Subscription ID where you want to deploy resources"
 }
 
 variable "tenant_id" {
   type        = string
   default     = ""
-  description = "The Azure Tenant ID where you want to deloy resources"
+  description = "The Azure Tenant ID where you want to deploy resources"
 }
