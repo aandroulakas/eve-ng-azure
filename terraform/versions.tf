@@ -1,10 +1,10 @@
 terraform {
-  required_version = "~> 1.0.0"
+  required_version = "~> 1.0.11"
 
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 2.64.0"
+      version = "~> 2.87.0"
     }
 
     http = {
