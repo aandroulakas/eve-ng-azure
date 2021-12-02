@@ -39,5 +39,9 @@ id_rsa.pub
 # Exlude QEMU images
 *.qcow2
 
+# Exlude Ansible inventory file
+**/.ansible/*
+inventory
+
 # More file to exlude
 .DS_Store
