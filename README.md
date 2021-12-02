@@ -101,6 +101,8 @@ $ terraform apply
 $ ansible-playbook -u eve-ng -i inventory playbook.yml
 ```
 
+> Upload speed of the QEMU images , depends on your Internet connection upload speed.
+
 # Usage after deployment is finished:
 
 Navigate to http://{eveng_fqdn}.
@@ -124,4 +126,4 @@ $ ansible-playbook -u eve-ng -i inventory playbook.yml
 # Basic connectivity test with a simple topology.
 In the directory  `eve-ng-azure/lab` , I have included a simple topology (Basic connectivity test.zip) which can be loaded to EVE-NG with the relevant configuration files. The topology is based on Cisco QEMU images.
 
-> Iterm2 (I am using this as my favorite terminal in macOS) telnet html handler is not working on macOS Catalina & Big Sur. Please see the following [article](https://gitlab.com/gnachman/iterm2/-/issues/9365) for resolution.
+> For Iterm2 (my favorite terminal in macOS) , "telnet html handler" is not working on macOS Catalina & Big Sur. In order to resolve this issue and be able to Telnet directly to the QEMU images please see the following [article](https://gitlab.com/gnachman/iterm2/-/issues/9365).
