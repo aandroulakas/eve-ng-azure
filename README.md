@@ -127,3 +127,5 @@ $ ansible-playbook -u eve-ng -i inventory playbook.yml
 In the directory  `eve-ng-azure/lab` , I have included a simple topology (Basic connectivity test.zip) which can be loaded to EVE-NG with the relevant configuration files. The topology is based on Cisco QEMU images.
 
 > For Iterm2 (my favorite terminal in macOS) , "telnet html handler" is not working on macOS Catalina & Big Sur. In order to resolve this issue and be able to Telnet directly to the QEMU images please see the following [article](https://gitlab.com/gnachman/iterm2/-/issues/9365).
+
+> https://cordero.me/eve-ng-macos-error-could-not-create-a-new-process-and-open-a-pseudo-tty/
