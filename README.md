@@ -130,7 +130,7 @@ In the directory  `eve-ng-azure/lab` , I have included a simple topology (Basic 
 
 > For Iterm2 (my favorite terminal in macOS) , "telnet html handler" is not working on macOS Catalina & Big Sur. In order to resolve this issue and be able to Telnet directly to the QEMU images please see the following [article](https://gitlab.com/gnachman/iterm2/-/issues/9365).
 
-In addition, if you receive this message in the Terminal when trying to Telnet to a device
+In addition, if you receive the below message in Terminal while trying to Telnet to a device:
 ```bash
 [Command not found: telnet]
 
