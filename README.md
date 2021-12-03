@@ -75,7 +75,7 @@ ssh-add ~/.ssh/id_rsa
 ```
 [More details about creating SSH Keys](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys)
 
-4. Place any QEMU image that you wish to use into the directory `eve-ng-azure/ansible/images`. The structure of the directory is important and MUST be like below:
+4. Place any QEMU image that you wish to use into a new directory `eve-ng-azure/ansible/images`. The structure of the directory is important and MUST be like below:
 ```bash
 $ tree images
 images
