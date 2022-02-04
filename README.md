@@ -128,12 +128,4 @@ In the directory  `eve-ng-azure/lab` , I have included a simple topology (Basic 
 
 # Telnet html handle
 
-> For Iterm2 (my favorite terminal in macOS) , "telnet html handler" is not working on macOS Catalina & Big Sur. In order to resolve this issue and be able to Telnet directly to the QEMU images please see the following [article](https://gitlab.com/gnachman/iterm2/-/issues/9365).
-
-In addition, if you receive the below message in Terminal while trying to telnet to a device:
-```bash
-[Command not found: telnet]
-
-[Could not create a new process and open a pseudo-tty.]
-```
-please follow this [instructions](https://cordero.me/eve-ng-macos-error-could-not-create-a-new-process-and-open-a-pseudo-tty/).
+> In order to have "console" access to the devices `Telnet html handle` will be used. For a smooth process you need to install Client Side as per [instructions](https://www.eve-ng.net/index.php/download/).
