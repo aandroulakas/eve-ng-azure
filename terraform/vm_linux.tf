@@ -9,10 +9,11 @@ resource "azurerm_public_ip" "main" {
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = "nic-${var.suffix}"
-  location            = var.location
-  resource_group_name = azurerm_resource_group.main.name
-  tags                = var.tags
+  name                 = "nic-${var.suffix}"
+  enable_ip_forwarding = true
+  location             = var.location
+  resource_group_name  = azurerm_resource_group.main.name
+  tags                 = var.tags
 
   ip_configuration {
     name                          = "nic-eve-ng"

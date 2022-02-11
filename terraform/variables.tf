@@ -3,6 +3,11 @@ variable "admin_username" {
   description = "The admin user for the Azure VM"
 }
 
+variable "allowed_ipv4" {
+  type        = list(string)
+  description = "Additional allowed IPv4"
+}
+
 variable "resource_group_name" {
   type        = string
   default     = "eve-ng"
