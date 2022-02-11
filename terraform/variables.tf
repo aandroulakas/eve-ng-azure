@@ -5,6 +5,7 @@ variable "admin_username" {
 
 variable "allowed_ipv4" {
   type        = list(string)
+  default     = []
   description = "Additional allowed IPv4"
 }
 

@@ -20,7 +20,7 @@ resource "azurerm_network_security_rule" "inbound_ipv4" {
   network_security_group_name = azurerm_network_security_group.main.name
   protocol                    = "Tcp"
   source_port_range           = "*"
-  source_address_prefixes     = [join(data.http.pip_ipv4.body, var.allowed_ipv4)]
+  source_address_prefixes     = [data.http.pip_ipv4.body, join(",", var.allowed_ipv4)]
   destination_port_ranges     = [22, 80]
   destination_address_prefix  = "*"
   access                      = "Allow"
@@ -51,7 +51,7 @@ resource "azurerm_network_security_rule" "inbound_ipv4_telnet" {
   network_security_group_name = azurerm_network_security_group.main.name
   protocol                    = "Tcp"
   source_port_range           = "*"
-  source_address_prefixes     = [join(data.http.pip_ipv4.body, var.allowed_ipv4)]
+  source_address_prefixes     = [data.http.pip_ipv4.body, join(",", var.allowed_ipv4)]
   destination_port_range      = "32769 - 32788"
   destination_address_prefix  = "*"
   access                      = "Allow"
