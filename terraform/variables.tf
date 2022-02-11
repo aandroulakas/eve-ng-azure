@@ -6,7 +6,7 @@ variable "admin_username" {
 variable "allowed_ipv4" {
   type        = list(string)
   default     = []
-  description = "Additional allowed IPv4"
+  description = "A list of any additional IPv4 addresses you wish to allow"
 }
 
 variable "resource_group_name" {
