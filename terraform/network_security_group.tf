@@ -13,7 +13,7 @@ resource "azurerm_network_security_group" "main" {
   resource_group_name = azurerm_resource_group.main.name
   tags                = var.tags
 }
-
+//test
 resource "azurerm_network_security_rule" "inbound_ipv4" {
   name                        = "AllowServicesInBoundIPv4"
   resource_group_name         = azurerm_resource_group.main.name
