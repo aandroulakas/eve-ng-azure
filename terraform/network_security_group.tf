@@ -3,9 +3,9 @@ data "http" "pip_ipv4" {
 }
 
 #If your ISP is NOT providing an IPv6 , comment out lines 6-8
-data "http" "pip_ipv6" {
-  url = "http://ipv6.ident.me"
-}
+#data "http" "pip_ipv6" {
+#  url = "http://ipv6.ident.me"
+#}
 
 resource "azurerm_network_security_group" "main" {
   name                = "nsg-${var.suffix}"
@@ -13,7 +13,7 @@ resource "azurerm_network_security_group" "main" {
   resource_group_name = azurerm_resource_group.main.name
   tags                = var.tags
 }
-//test
+
 resource "azurerm_network_security_rule" "inbound_ipv4" {
   name                        = "AllowServicesInBoundIPv4"
   resource_group_name         = azurerm_resource_group.main.name
